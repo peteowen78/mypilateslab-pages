@@ -270,7 +270,9 @@
         .about-visual { position:sticky; top:100px; }
         .about-img-wrap { position:relative; }
         .about-img {
-            width:100%; aspect-ratio:3/4;
+            /* height:auto is required — the img's height attribute is a
+               presentational hint that otherwise defeats aspect-ratio. */
+            width:100%; height:auto; aspect-ratio:3/4;
             object-fit:cover; object-position:center top; display:block;
         }
         .about-badge {

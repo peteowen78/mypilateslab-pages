@@ -208,14 +208,17 @@
         }
         .section-title em { font-style:italic; }
 
+        /* auto-fit so the grid keeps its shape as programmes are added */
         .programs-grid {
-            display:grid; grid-template-columns:1fr 1fr 1fr;
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
             gap:2px; background:var(--border);
         }
 
+        /* Flex column so the footer link sits on a common baseline
+           regardless of how long each description runs. */
         .program-card {
             background:var(--cream); text-decoration:none;
-            color:var(--dark); display:block; overflow:hidden;
+            color:var(--dark); display:flex; flex-direction:column; overflow:hidden;
         }
         .program-img { width:100%; aspect-ratio:16/10; overflow:hidden; }
         .program-img img {
@@ -224,7 +227,7 @@
         }
         .program-card:hover .program-img img { transform:scale(1.04); }
 
-        .program-body { padding:36px 40px 40px; }
+        .program-body { padding:36px 40px 40px; flex:1; display:flex; flex-direction:column; }
 
         .program-type {
             font-size:12px; font-weight:400; letter-spacing:.2em;
@@ -236,7 +239,7 @@
         }
         .program-desc {
             font-size:15px; font-weight:300; line-height:1.75;
-            color:var(--mid-text); margin-bottom:28px; max-width:360px;
+            color:var(--mid-text); margin-bottom:28px; max-width:360px; flex:1;
         }
         .program-foot {
             display:flex; align-items:center; justify-content:space-between;
@@ -261,6 +264,41 @@
         }
         .card-link::after { content:'→'; font-size:14px; }
         .program-card:hover .card-link { gap:14px; }
+
+        /* The subscription is a property of the whole section, not of one
+           card — otherwise the priced card reads as the product and the
+           rest read as paid add-ons. */
+        .programs-note {
+            font-size:15px; font-weight:300; line-height:1.75;
+            color:var(--mid-text); margin-top:20px; max-width:46ch;
+        }
+        .subscription-bar {
+            margin-top:2px; background:var(--rose-light);
+            padding:38px 48px;
+            display:flex; align-items:center; justify-content:space-between;
+            gap:36px; flex-wrap:wrap;
+        }
+        .sub-label {
+            font-size:12px; font-weight:400; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--rose-text); margin-bottom:8px;
+        }
+        .sub-copy {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(24px,2.4vw,32px); font-weight:300; line-height:1.2;
+        }
+        .sub-copy em { font-style:italic; }
+        .sub-right { display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
+        .sub-price { display:flex; align-items:baseline; gap:2px; }
+        .sub-sym {
+            font-family:'Cormorant Garamond',serif;
+            font-size:22px; font-weight:400; color:var(--mid-text);
+        }
+        .sub-amt {
+            font-family:'Cormorant Garamond',serif;
+            font-size:52px; font-weight:300; line-height:1;
+        }
+        .sub-per { font-size:13px; color:var(--mid-text); margin-left:6px; }
+        .sub-terms { font-size:13px; color:var(--mid-text); margin-top:6px; }
 
         /* ── EDITORIAL ───────────────────────────── */
         .editorial {
@@ -306,7 +344,9 @@
         .about-visual { position:sticky; top:100px; }
         .about-img-wrap { position:relative; }
         .about-img {
-            width:100%; aspect-ratio:3/4;
+            /* height:auto is required — the img's height attribute is a
+               presentational hint that otherwise defeats aspect-ratio. */
+            width:100%; height:auto; aspect-ratio:3/4;
             object-fit:cover; object-position:center top; display:block;
         }
         .about-badge {
@@ -646,7 +686,7 @@
         .price-amt, .price-block-amt, .pricing-figure, .stat-num, .hero-stat-num,
         .feat-num, .flex-box-num, .pillar-num, .wyg-num, .step-num, .price-num,
         .hero-badge-num, .pricing-perhead-num, .maths-num, .sched-week,
-        .hero-title, .section-title, .price, .pricing-amt {
+        .hero-title, .section-title, .price, .pricing-amt, .sub-amt {
             font-variant-numeric: lining-nums tabular-nums;
             font-feature-settings: "lnum" 1, "tnum" 1;
         }
@@ -689,6 +729,8 @@
 
         @media (max-width: 640px) {
             /* index, start and back-pain were not stacking these. */
+            .subscription-bar { padding:32px; align-items:flex-start; gap:28px; }
+            .sub-right { gap:24px; align-items:flex-start; }
             .hero-actions { flex-direction: column; align-items: stretch; }
             .hero-actions > * { width: 100%; justify-content: center; text-align: center; }
         }
@@ -803,7 +845,8 @@
     <div class="section-head">
         <div>
             <p class="eyebrow" data-reveal>Programs</p>
-            <h2 class="section-title" data-reveal data-d="1">Three ways to<br><em>start moving</em></h2>
+            <h2 class="section-title" data-reveal data-d="1">Choose where<br><em>to start.</em></h2>
+            <p class="programs-note" data-reveal data-d="2">Every programme is included in one subscription — begin anywhere, move between them whenever you like.</p>
         </div>
         <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-ghost" data-reveal>View all →</a>
     </div>
@@ -813,16 +856,11 @@
                 <img src="Images/opt/IMG_0869-1600.jpg" srcset="Images/opt/IMG_0869-400.jpg 400w, Images/opt/IMG_0869-800.jpg 800w, Images/opt/IMG_0869-1600.jpg 1600w" sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 660px" alt="Workout Library — online Pilates classes" width="1600" height="900" loading="lazy" decoding="async">
             </div>
             <div class="program-body">
-                <p class="program-type">Monthly Subscription</p>
+                <p class="program-type">The Complete Library</p>
                 <h3 class="program-name">Workout<br>Library</h3>
-                <p class="program-desc">A growing collection of Pilates workouts to drop into any time. New classes added regularly — work at your own pace, cancel any time.</p>
+                <p class="program-desc">Over a hundred classes to work through entirely at your own leisure — mobility, core, strength and stretch. Dip in for ten minutes or settle in for an hour, with new sessions added all the time.</p>
                 <div class="program-foot">
-                    <div class="price">
-                        <span class="price-sym">£</span>
-                        <span class="price-amt">15</span>
-                        <span class="price-note">/ month</span>
-                    </div>
-                    <span class="card-link">Start 7 Days Free</span>
+                    <span class="card-link">Explore the library</span>
                 </div>
             </div>
         </a>
@@ -835,8 +873,7 @@
                 <h3 class="program-name">Complete<br>Beginner Series</h3>
                 <p class="program-desc">From curious to confident in just four weeks. 13 pre-recorded tutorials — no equipment needed, just you and your mat.</p>
                 <div class="program-foot">
-                    <div class="price"><span class="price-included">Included</span></div>
-                    <span class="card-link">Start 7 Days Free</span>
+                    <span class="card-link">Explore the series</span>
                 </div>
             </div>
         </a>
@@ -849,11 +886,27 @@
                 <h3 class="program-name">Pilates for<br>Racket Sports</h3>
                 <p class="program-desc">Built for padel, tennis, squash and pickleball players — shoulders, rotation, hips, and five-minute routines for match days.</p>
                 <div class="program-foot">
-                    <div class="price"><span class="price-included">Included</span></div>
-                    <span class="card-link">For Padel Players</span>
+                    <span class="card-link">Explore the programme</span>
                 </div>
             </div>
         </a>
+    </div>
+    <div class="subscription-bar" data-reveal>
+        <div>
+            <p class="sub-label">One subscription</p>
+            <p class="sub-copy">Everything above, <em>included.</em></p>
+        </div>
+        <div class="sub-right">
+            <div>
+                <div class="sub-price">
+                    <span class="sub-sym">£</span>
+                    <span class="sub-amt">15</span>
+                    <span class="sub-per">/ month</span>
+                </div>
+                <p class="sub-terms">7 days free · Cancel any time</p>
+            </div>
+            <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-dark">Start 7 Days Free</a>
+        </div>
     </div>
 </section>
 
