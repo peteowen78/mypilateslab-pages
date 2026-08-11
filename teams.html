@@ -538,6 +538,15 @@
         /* Reserve room for the pause control; it was sitting on the text. */
         .marquee-inner { padding-right: 68px; }
         .nav-link { min-height: 44px; display: inline-flex; align-items: center; }
+        .src {
+            display:block; margin-top:14px; font-size:11px; font-weight:400;
+            letter-spacing:.14em; text-transform:uppercase; color:var(--sage-text);
+        }
+        .sources {
+            margin-top:44px; font-size:13px; font-weight:300; line-height:1.7;
+            color:var(--mid-text); text-align:center;
+        }
+        .sources a { color:var(--sage-text); text-underline-offset:2px; }
     </style>
     <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
@@ -632,8 +641,8 @@
             <div class="problem-icon">
                 <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
-            <h3 class="problem-title">Remote work has changed everything</h3>
-            <p class="problem-desc">The average WFH employee sits for 75% longer than office-based colleagues. Back pain, poor posture, and stress have become the hidden cost of home working.</p>
+            <h3 class="problem-title">Desk work takes a measurable toll</h3>
+            <p class="problem-desc">511,000 workers in Great Britain were suffering from a work-related musculoskeletal disorder last year. Of those cases, 84% affected the back, neck or upper limbs &mdash; exactly what sitting all day loads hardest.<span class="src">HSE, 2024/25</span></p>
         </div>
         <div class="problem-card" data-reveal data-d="2">
             <div class="problem-icon">
@@ -646,10 +655,11 @@
             <div class="problem-icon">
                 <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
-            <h3 class="problem-title">Wellbeing affects performance</h3>
-            <p class="problem-desc">Employees who exercise regularly are 23% more focused and take 27% fewer sick days. A small investment in movement pays back in productivity and team retention.</p>
+            <h3 class="problem-title">It adds up to real lost time</h3>
+            <p class="problem-desc">Musculoskeletal disorders caused 7.1 million lost working days &mdash; 27% of all work-related ill health, and a fifth of every day lost to it. Across the UK, 148.8 million days went to sickness in 2025.<span class="src">HSE, 2024/25 &middot; ONS, 2025</span></p>
         </div>
     </div>
+    <p class="sources" data-reveal>Figures from <a href="https://www.hse.gov.uk/statistics/causdis/musculoskeletal/index.htm" target="_blank" rel="noopener">HSE, Work-related musculoskeletal disorders in Great Britain 2025</a> (data to March 2025) and <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/labourproductivity/articles/sicknessabsenceinthelabourmarket/2025" target="_blank" rel="noopener">ONS, Sickness absence in the UK labour market 2025</a>. They describe the scale of the problem, not outcomes from this programme.</p>
 </section>
 
 <!-- ── HOW IT WORKS ──────────────────────────────── -->
