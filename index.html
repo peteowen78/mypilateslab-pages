@@ -729,8 +729,10 @@
 
         @media (max-width: 640px) {
             /* index, start and back-pain were not stacking these. */
-            .subscription-bar { padding:32px; align-items:flex-start; gap:28px; }
-            .sub-right { gap:24px; align-items:flex-start; }
+            .subscription-bar { padding:32px; align-items:flex-start; gap:24px; }
+            /* Keep the price and the button on one row so nobody taps with
+               the price scrolled off screen. */
+            .sub-right { width:100%; gap:20px; align-items:center; justify-content:space-between; flex-wrap:nowrap; }
             .hero-actions { flex-direction: column; align-items: stretch; }
             .hero-actions > * { width: 100%; justify-content: center; text-align: center; }
         }
@@ -747,6 +749,12 @@
             .price-block:hover, .feature-box:hover, .testi:hover,
             .pillar:hover, .promise:hover { transform: none; }
         }
+        /* AA fix: rose-text (#805C52) is a cream-ground token and measures
+           2.90:1 on --dark. rose-on-dark measures 7.01:1. */
+        .beginner .eyebrow, .beginner .sched-label { color: var(--rose-on-dark); }
+        /* Reserve room for the pause control; it was sitting on the text. */
+        .marquee-inner { padding-right: 68px; }
+        .nav-link { min-height: 44px; display: inline-flex; align-items: center; }
     </style>
     <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>

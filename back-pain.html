@@ -548,6 +548,12 @@
             .price-block:hover, .feature-box:hover, .testi:hover,
             .pillar:hover, .promise:hover { transform: none; }
         }
+        /* AA fix: rose-text (#805C52) is a cream-ground token and measures
+           2.90:1 on --dark. rose-on-dark measures 7.01:1. */
+        .beginner .eyebrow, .beginner .sched-label { color: var(--rose-on-dark); }
+        /* Reserve room for the pause control; it was sitting on the text. */
+        .marquee-inner { padding-right: 68px; }
+        .nav-link { min-height: 44px; display: inline-flex; align-items: center; }
     </style>
     <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>

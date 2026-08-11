@@ -573,6 +573,16 @@
             margin-top: -28px; margin-bottom: 44px;
         }
         .also-covers strong { font-weight: 400; color: var(--dark); }
+        /* AA fix: rose-text (#805C52) is a cream-ground token and measures
+           2.90:1 on --dark. rose-on-dark measures 7.01:1. */
+        .beginner .eyebrow, .beginner .sched-label { color: var(--rose-on-dark); }
+        /* Reserve room for the pause control; it was sitting on the text. */
+        .marquee-inner { padding-right: 68px; }
+        .nav-link { min-height: 44px; display: inline-flex; align-items: center; }
+        .testi-note {
+            font-size:15px; font-weight:300; line-height:1.75; color:var(--mid-text);
+            max-width:60ch; margin:22px auto 0;
+        }
     </style>
     <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
@@ -831,8 +841,9 @@
 <!-- TESTIMONIALS -->
 <section class="testimonials">
     <div class="testi-head" data-reveal>
-        <p class="eyebrow">What students say</p>
-        <h2 class="section-title">Real results,<br><em>real people.</em></h2>
+        <p class="eyebrow">How Caroline teaches</p>
+        <h2 class="section-title">New programme.<br><em>Not a new teacher.</em></h2>
+        <p class="testi-note">Pilates for Racket Sports is new, so these aren&rsquo;t padel players &mdash; they are students who have trained with Caroline in the studio. The programme is new; the teaching behind it is not.</p>
     </div>
     <div class="testi-grid">
         <div class="testi-card" data-reveal>

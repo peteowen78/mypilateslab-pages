@@ -352,6 +352,32 @@
             .price-block:hover, .feature-box:hover, .testi:hover,
             .pillar:hover, .promise:hover { transform: none; }
         }
+        /* AA fix: rose-text (#805C52) is a cream-ground token and measures
+           2.90:1 on --dark. rose-on-dark measures 7.01:1. */
+        .repeat-eyebrow { color: var(--rose-on-dark); }
+        /* The trial page never stated the card requirement or the day-8
+           behaviour. Both are the questions people actually have here. */
+        .next { background:var(--sage-light); padding:100px 80px; }
+        .next-head { text-align:center; margin-bottom:56px; }
+        .next-grid {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:2px; background:rgba(28,28,26,.1); max-width:1100px; margin:0 auto;
+        }
+        .next-card { background:var(--sage-light); padding:40px 36px; }
+        .next-when {
+            font-size:12px; font-weight:400; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--sage-text); margin-bottom:14px;
+        }
+        .next-what {
+            font-family:'Cormorant Garamond',serif; font-size:28px;
+            font-weight:300; line-height:1.15; margin-bottom:12px;
+        }
+        .next-desc { font-size:15px; font-weight:300; line-height:1.75; color:var(--mid-text); }
+        .next-foot {
+            text-align:center; font-size:14px; font-weight:300;
+            color:var(--mid-text); margin-top:40px;
+        }
+        @media (max-width:1100px) { .next { padding:60px 32px; } }
     </style>
     <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
@@ -440,6 +466,32 @@
             <p class="wyg-desc">Phone, tablet, laptop, smart TV. If it has a browser, it works. Stream at home, in a hotel room, or wherever life takes you.</p>
         </div>
     </div>
+</section>
+
+<!-- WHAT HAPPENS NEXT -->
+<section class="next">
+    <div class="next-head">
+        <p class="eyebrow" data-reveal>No surprises</p>
+        <h2 class="section-title" data-reveal data-d="1">What happens<br><em>next.</em></h2>
+    </div>
+    <div class="next-grid">
+        <div class="next-card" data-reveal>
+            <p class="next-when">Today</p>
+            <p class="next-what">You add a card</p>
+            <p class="next-desc">We take your card details to set the account up &mdash; nothing is charged today, and you get everything straight away.</p>
+        </div>
+        <div class="next-card" data-reveal data-d="1">
+            <p class="next-when">Days 1&ndash;7</p>
+            <p class="next-what">Free, in full</p>
+            <p class="next-desc">Every class, every programme, on any device. Not a sample and not a locked preview &mdash; the whole library.</p>
+        </div>
+        <div class="next-card" data-reveal data-d="2">
+            <p class="next-when">Day 8</p>
+            <p class="next-what">&pound;15 a month begins</p>
+            <p class="next-desc">Only if you stay. Cancel any time before then and you are not charged at all &mdash; it takes a couple of taps, with no email and no phone call.</p>
+        </div>
+    </div>
+    <p class="next-foot" data-reveal>Cancel any time, at any point &mdash; not just during the free week.</p>
 </section>
 
 <!-- TESTIMONIAL -->
