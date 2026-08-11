@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pilates Lab — Your Complete Pilates Resource</title>
+    <meta name="description" content="Online Pilates taught by Level 4 Certified Instructor Caroline Owen. Complete Beginner Series and Workout Library — accessible to everyBODY.">
+    <link rel="icon" href="logo/mypilateslab-256.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cream:       #F6F3ED;
+            --dark:        #1C1C1A;
+            --rose:        #B8968E;
+            --rose-light:  #EDE2DE;
+            --sage:        #6B8472;
+            --sage-light:  #ECF0EC;
+            --mid:         #7A7570;
+            --border:      rgba(28,28,26,0.1);
+
+            /* Text-safe variants of the palette accents.
+               The originals above stay in use for fills, rules and blocks;
+               these are for TEXT ONLY and all clear WCAG AA (4.5:1) on
+               cream, rose-light, sage-light and white. */
+            --rose-text:   #805C52;   /* 5.31:1 on cream */
+            --mid-text:    #635F5B;   /* 5.71:1 on cream */
+            --sage-text:   #516B58;   /* 5.28:1 on cream */
+            --sage-deep:   #59705F;   /* cream label on this = 4.85:1 */
+
+            /* On dark grounds the accents must go LIGHTER, not darker. */
+            --rose-on-dark: #C29E96;  /* >=5.18:1 on every dark ground used */
+            --sage-on-dark: #89A390;  /* >=4.63:1 on every dark ground used */
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+        html { scroll-behavior:smooth; }
+
+        body {
+            background: var(--cream);
+            color: var(--dark);
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ─────────────────────────────────── */
+        nav {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 56px;
+            background: rgba(246,243,237,0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow .3s ease;
+        }
+
+        .nav-logo { height: 50px; width: auto; display: block; }
+
+        .nav-right { display:flex; align-items:center; gap:32px; }
+
+        .nav-link {
+            font-size: 12px; font-weight:400; letter-spacing:.1em;
+            text-transform: uppercase; color: var(--mid-text);
+            text-decoration: none; transition: color .2s;
+        }
+        .nav-link:hover { color: var(--dark); }
+
+        .nav-cta {
+            background: var(--dark); color: var(--cream);
+            text-decoration: none; padding: 10px 24px;
+            font-size: 12px; font-weight:400; letter-spacing:.12em;
+            text-transform: uppercase; transition: background .2s;
+        }
+        .nav-cta:hover { background: var(--rose); }
+
+        /* ── HERO ────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 55fr 45fr;
+            padding-top: 77px;
+        }
+
+        .hero-left {
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 80px 64px 80px 80px;
+        }
+
+        .hero-eyebrow {
+            display: flex; align-items: center; gap: 14px;
+            font-size: 12px; font-weight:400; letter-spacing:.2em;
+            text-transform: uppercase; color: var(--rose-text); margin-bottom:28px;
+        }
+        .hero-eyebrow::before {
+            content:''; display:block; width:0; height:1px;
+            background: var(--rose);
+            animation: lineGrow .8s ease .4s forwards;
+        }
+        @keyframes lineGrow { to { width:40px; } }
+
+        h1.hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(58px, 6.5vw, 100px);
+            font-weight: 300; line-height:.97;
+            letter-spacing: -.025em; margin-bottom:28px;
+        }
+        h1.hero-title em { font-style:italic; }
+
+        .hero-subtitle {
+            font-size:15px; font-weight:300; color:var(--mid-text);
+            line-height:1.75; max-width:400px; margin-bottom:44px;
+        }
+
+        .hero-actions { display:flex; gap:20px; align-items:center; margin-bottom:56px; }
+
+        .btn-dark {
+            display:inline-block; background:var(--dark); color:var(--cream);
+            text-decoration:none; padding:14px 36px;
+            font-size:12px; font-weight:400; letter-spacing:.12em;
+            text-transform:uppercase; transition:background .2s;
+        }
+        .btn-dark:hover { background:var(--sage); }
+
+        .btn-ghost {
+            display:inline-block; color:var(--dark); text-decoration:none;
+            font-size:12px; font-weight:400; letter-spacing:.12em;
+            text-transform:uppercase; padding-bottom:3px;
+            border-bottom:1px solid currentColor; transition:color .2s;
+        }
+        .btn-ghost:hover { color:var(--sage-text); }
+
+        .hero-stats {
+            display:flex; gap:40px; padding-top:32px;
+            border-top:1px solid var(--border);
+        }
+        .stat { display:flex; flex-direction:column; gap:4px; }
+        .stat-num {
+            font-family:'Cormorant Garamond',serif;
+            font-size:40px; font-weight:300; line-height:1; color:var(--rose-text);
+        }
+        .stat-lbl { font-size:13px; font-weight:300; color:var(--mid-text); }
+
+        .hero-right { position:relative; overflow:hidden; }
+        .hero-photo {
+            position:absolute; inset:0;
+            width:100%; height:100%;
+            object-fit:cover; object-position:center top;
+        }
+        .hero-caption {
+            position:absolute; bottom:32px; left:32px;
+            background:var(--cream); padding:16px 20px; max-width:220px;
+        }
+        .hero-caption-name {
+            font-family:'Cormorant Garamond',serif;
+            font-size:18px; font-weight:400; margin-bottom:3px;
+        }
+        .hero-caption-title {
+            font-size:12px; letter-spacing:.1em;
+            text-transform:uppercase; color:var(--mid-text);
+        }
+
+        /* ── MARQUEE ─────────────────────────────── */
+        .marquee-band {
+            background:var(--dark); color:var(--cream);
+            padding:15px 0; overflow:hidden; display:flex;
+        }
+        .marquee-track {
+            display:flex; gap:0; white-space:nowrap; flex-shrink:0;
+            animation: scroll 28s linear infinite;
+        }
+        @keyframes scroll { to { transform: translateX(-50%); } }
+        .marquee-item {
+            display:inline-flex; align-items:center; gap:20px;
+            font-size:12px; font-weight:400; letter-spacing:.18em;
+            text-transform:uppercase; padding-right:20px;
+        }
+        .marquee-sep {
+            display:inline-block; width:4px; height:4px;
+            border-radius:50%; background:var(--rose); flex-shrink:0;
+        }
+
+        /* ── PROGRAMS ────────────────────────────── */
+        .programs { padding:100px 80px; }
+
+        .section-head {
+            display:flex; align-items:flex-end;
+            justify-content:space-between; margin-bottom:52px;
+        }
+
+        .eyebrow {
+            font-size:12px; font-weight:400; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--rose-text); margin-bottom:10px;
+        }
+
+        .section-title {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(36px,4.5vw,64px);
+            font-weight:300; line-height:1.05; letter-spacing:-.02em;
+        }
+        .section-title em { font-style:italic; }
+
+        .programs-grid {
+            display:grid; grid-template-columns:1fr 1fr;
+            gap:2px; background:var(--border);
+        }
+
+        .program-card {
+            background:var(--cream); text-decoration:none;
+            color:var(--dark); display:block; overflow:hidden;
+        }
+        .program-img { width:100%; aspect-ratio:16/10; overflow:hidden; }
+        .program-img img {
+            width:100%; height:100%; object-fit:cover;
+            transition:transform .6s ease;
+        }
+        .program-card:hover .program-img img { transform:scale(1.04); }
+
+        .program-body { padding:36px 40px 40px; }
+
+        .program-type {
+            font-size:12px; font-weight:400; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--rose-text); margin-bottom:10px;
+        }
+        .program-name {
+            font-family:'Cormorant Garamond',serif;
+            font-size:36px; font-weight:300; line-height:1.1; margin-bottom:14px;
+        }
+        .program-desc {
+            font-size:15px; font-weight:300; line-height:1.75;
+            color:var(--mid-text); margin-bottom:28px; max-width:360px;
+        }
+        .program-foot {
+            display:flex; align-items:center; justify-content:space-between;
+            padding-top:22px; border-top:1px solid var(--border);
+        }
+        .price {
+            display:flex; align-items:baseline; gap:2px;
+        }
+        .price-sym {
+            font-family:'Cormorant Garamond',serif;
+            font-size:20px; font-weight:400; color:var(--mid-text);
+        }
+        .price-amt {
+            font-family:'Cormorant Garamond',serif;
+            font-size:48px; font-weight:300; line-height:1;
+        }
+        .price-note { font-size:13px; color:var(--mid-text); margin-left:6px; }
+        .card-link {
+            font-size:12px; font-weight:400; letter-spacing:.1em;
+            text-transform:uppercase; display:flex; align-items:center; gap:8px;
+            transition:gap .2s;
+        }
+        .card-link::after { content:'→'; font-size:14px; }
+        .program-card:hover .card-link { gap:14px; }
+
+        /* ── EDITORIAL ───────────────────────────── */
+        .editorial {
+            display:grid; grid-template-columns:1fr 1fr; min-height:72vh;
+        }
+        .editorial-img { position:relative; overflow:hidden; }
+        .editorial-img img { width:100%; height:100%; object-fit:cover; }
+
+        .editorial-text {
+            background:var(--rose-light);
+            display:flex; flex-direction:column; justify-content:center;
+            padding:80px 80px 80px 72px;
+        }
+        .editorial-ew {
+            font-size:12px; font-weight:400; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--rose-text);
+            margin-bottom:36px; display:flex; align-items:center; gap:16px;
+        }
+        .editorial-ew::before {
+            content:''; display:block; width:32px; height:1px;
+            background:var(--rose);
+        }
+        .editorial-quote {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(22px,2.8vw,36px);
+            font-weight:300; font-style:italic; line-height:1.45;
+            margin-bottom:32px;
+        }
+        .editorial-attr {
+            font-size:13px; font-weight:400; color:var(--mid-text);
+        }
+        .editorial-attr strong {
+            font-weight:500; color:var(--dark);
+            display:block; margin-bottom:2px;
+        }
+
+        /* ── ABOUT ───────────────────────────────── */
+        .about {
+            padding:100px 80px;
+            display:grid; grid-template-columns:45fr 55fr;
+            gap:80px; align-items:start;
+        }
+        .about-visual { position:sticky; top:100px; }
+        .about-img-wrap { position:relative; }
+        .about-img {
+            width:100%; aspect-ratio:3/4;
+            object-fit:cover; object-position:center top; display:block;
+        }
+        .about-badge {
+            position:absolute; bottom:-20px; right:-20px;
+            background:var(--dark); color:var(--cream);
+            padding:20px 24px; max-width:200px;
+        }
+        .about-badge-text {
+            font-family:'Cormorant Garamond',serif;
+            font-size:14px; font-style:italic; line-height:1.5;
+        }
+
+        .about-content { padding-top:8px; }
+
+        .about-name {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(44px,5vw,72px);
+            font-weight:300; line-height:1;
+            letter-spacing:-.02em; margin-bottom:10px;
+        }
+        .about-name em { font-style:italic; }
+        .about-tagline {
+            font-family:'Cormorant Garamond',serif;
+            font-size:20px; font-style:italic;
+            color:var(--rose-text); margin-bottom:36px;
+        }
+        .about-body {
+            font-size:15px; font-weight:300; line-height:1.85;
+            color:var(--mid-text); margin-bottom:20px;
+        }
+        .about-body strong { color:var(--dark); font-weight:400; }
+
+        .promises {
+            margin-top:44px;
+            display:grid; grid-template-columns:1fr 1fr; gap:10px;
+        }
+        .promise {
+            display:flex; align-items:center; gap:12px;
+            padding:14px 16px; background:var(--sage-light);
+            font-size:14px; font-weight:400;
+        }
+        .promise-check {
+            width:20px; height:20px; border-radius:50%;
+            background:var(--sage); flex-shrink:0;
+            display:flex; align-items:center; justify-content:center;
+        }
+        .promise-check svg {
+            width:10px; height:10px; stroke:#fff;
+            fill:none; stroke-width:2;
+            stroke-linecap:round; stroke-linejoin:round;
+        }
+        .about-cta { margin-top:40px; }
+
+        /* ── BEGINNER SERIES ─────────────────────── */
+        .beginner {
+            background:var(--dark); color:var(--cream);
+            padding:100px 80px;
+        }
+        .beginner-inner {
+            display:grid; grid-template-columns:1fr 1fr;
+            gap:80px; align-items:start;
+        }
+        .beginner .eyebrow { color:var(--rose-text); }
+        .beginner .section-title { color:var(--cream); margin-bottom:24px; }
+
+        .joseph-quote {
+            font-family:'Cormorant Garamond',serif;
+            font-size:18px; font-style:italic; line-height:1.6;
+            color:rgba(246,243,237,0.62); border-left:2px solid var(--rose);
+            padding-left:24px; margin:32px 0;
+        }
+        .joseph-quote cite {
+            font-style:normal; font-size:13px; letter-spacing:.06em;
+            color:var(--rose-text); display:block; margin-top:8px;
+        }
+
+        .beginner-desc {
+            font-size:15px; font-weight:300; line-height:1.8;
+            color:rgba(246,243,237,0.62); margin-bottom:40px;
+        }
+
+        .features { display:flex; flex-direction:column; gap:2px; margin-bottom:44px; }
+        .feature {
+            display:flex; align-items:center; gap:20px;
+            padding:16px 20px; background:rgba(255,255,255,.04);
+        }
+        .feat-num {
+            font-family:'Cormorant Garamond',serif;
+            font-size:30px; font-weight:300; color:var(--rose-text);
+            width:52px; flex-shrink:0; text-align:center; line-height:1;
+        }
+        .feat-title { font-size:14px; font-weight:400; margin-bottom:2px; }
+        .feat-sub { font-size:13px; font-weight:300; color:rgba(246,243,237,0.62); }
+
+        .price-block {
+            display:flex; align-items:center; justify-content:space-between;
+            padding:28px 32px; background:var(--rose);
+        }
+        .price-block-label {
+            font-size:12px; letter-spacing:.15em; text-transform:uppercase;
+            color:rgba(28,28,26,0.85); display:block; margin-bottom:4px;
+        }
+        .price-block-amt {
+            font-family:'Cormorant Garamond',serif;
+            font-size:52px; font-weight:300; line-height:1; color:var(--dark);
+        }
+        .price-block-sub { font-size:13px; color:rgba(28,28,26,0.85); margin-top:4px; }
+
+        .btn-cream {
+            background:var(--dark); color:var(--cream);
+            text-decoration:none; padding:14px 32px;
+            font-size:12px; font-weight:400; letter-spacing:.12em;
+            text-transform:uppercase; transition:background .2s; flex-shrink:0;
+        }
+        .btn-cream:hover { background:rgba(28,28,26,.8); }
+
+        /* schedule */
+        .sched-label {
+            font-size:12px; letter-spacing:.15em; text-transform:uppercase;
+            color:var(--rose-text); margin-bottom:14px;
+        }
+        .schedule { display:flex; flex-direction:column; gap:2px; }
+        .sched-row {
+            display:grid; grid-template-columns:76px 1fr auto;
+            align-items:center; gap:16px; padding:18px 20px;
+            background:rgba(255,255,255,.04); transition:background .2s;
+        }
+        .sched-row:first-child { background:rgba(184,150,142,.18); }
+        .sched-row:hover { background:rgba(255,255,255,.08); }
+        .sched-week {
+            font-size:12px; letter-spacing:.1em;
+            text-transform:uppercase; color:var(--rose-text);
+        }
+        .sched-name { font-size:15px; font-weight:400; }
+        .sched-count { font-size:13px; color:rgba(246,243,237,0.62); }
+        .sched-note {
+            font-size:13px; font-style:italic;
+            color:rgba(246,243,237,0.62); margin-top:12px;
+        }
+
+        /* ── APP SECTION ─────────────────────────── */
+        .app-section {
+            padding:100px 80px;
+            display:grid; grid-template-columns:1fr 1fr;
+            gap:80px; align-items:center;
+            background:var(--sage-light);
+        }
+        .app-phone { display:flex; justify-content:center; }
+        .app-phone img {
+            max-height:560px; width:auto;
+            filter:drop-shadow(0 40px 80px rgba(0,0,0,.12));
+        }
+        .app-content .eyebrow { color:var(--sage-text); }
+        .app-content .section-title { margin-bottom:24px; }
+        .app-desc {
+            font-size:15px; font-weight:300; line-height:1.8;
+            color:var(--mid-text); margin-bottom:40px;
+        }
+
+        /* ── TESTIMONIALS ────────────────────────── */
+        .testimonials {
+            padding: 100px 80px;
+            background: var(--rose-light);
+        }
+        .testi-head { text-align: center; margin-bottom: 64px; }
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(184,150,142,.2);
+        }
+        .testi-card {
+            background: var(--rose-light);
+            padding: 40px 36px;
+        }
+        .testi-stars {
+            color: var(--rose-text);
+            font-size: 14px;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+        .testi-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.65;
+            color: var(--dark);
+            margin-bottom: 24px;
+        }
+        .testi-name {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--mid-text);
+        }
+
+        /* ── FINAL CTA ───────────────────────────── */
+        .final-cta {
+            padding:130px 80px; text-align:center;
+            position:relative; overflow:hidden;
+        }
+        .final-cta::before {
+            content:''; position:absolute; top:50%; left:50%;
+            transform:translate(-50%,-50%);
+            width:800px; height:800px; border-radius:50%;
+            background:radial-gradient(circle, rgba(184,150,142,.12) 0%, transparent 65%);
+            pointer-events:none;
+        }
+        .cta-eyebrow {
+            font-size:12px; font-weight:400; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--rose-text); margin-bottom:24px;
+        }
+        .cta-title {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(48px,6.5vw,96px);
+            font-weight:300; line-height:1.0;
+            letter-spacing:-.025em; margin-bottom:20px;
+        }
+        .cta-title em { font-style:italic; }
+        .cta-sub {
+            font-family:'Cormorant Garamond',serif;
+            font-size:20px; font-style:italic;
+            color:var(--mid-text); margin-bottom:52px;
+        }
+        .cta-actions {
+            display:flex; gap:20px; justify-content:center; align-items:center;
+        }
+
+        /* ── FOOTER ──────────────────────────────── */
+        footer {
+            background:var(--dark); color:var(--cream);
+            padding:48px 80px;
+            display:flex; align-items:center; justify-content:space-between;
+        }
+        .footer-logo { height:32px; width:auto; filter:invert(1); }
+        .footer-links { display:flex; gap:32px; }
+        .footer-link {
+            font-size:12px; font-weight:400; letter-spacing:.1em;
+            text-transform:uppercase; color:rgba(246,243,237,0.62);
+            text-decoration:none; transition:color .2s;
+        }
+        .footer-link:hover { color:var(--cream); }
+        .footer-copy { font-size:12px; color:rgba(246,243,237,0.62); }
+        .footer-social { display:inline-flex; align-items:center; color:rgba(246,243,237,0.62); transition:color .2s; margin-top:10px; }
+        .footer-social:hover { color:rgba(246,243,237,.75); }
+
+        /* ── REVEAL ANIMATIONS ───────────────────── */
+        [data-reveal] {
+            opacity:0; transform:translateY(22px);
+            transition:opacity .75s ease, transform .75s ease;
+        }
+        [data-reveal].in { opacity:1; transform:none; }
+        [data-reveal][data-d="1"] { transition-delay:.1s; }
+        [data-reveal][data-d="2"] { transition-delay:.2s; }
+        [data-reveal][data-d="3"] { transition-delay:.3s; }
+        [data-reveal][data-d="4"] { transition-delay:.4s; }
+        [data-reveal][data-d="5"] { transition-delay:.5s; }
+
+        /* ── RESPONSIVE ──────────────────────────── */
+        @media (max-width:1100px) {
+            nav { padding:18px 32px; }
+            .hero { grid-template-columns:1fr; min-height:auto; }
+            .hero-left { padding:56px 32px; order:2; }
+            .hero-right { height:75vw; min-height:340px; order:1; }
+            .hero-caption { display:none; }
+            /* Mobile hero: taller crop, focus on face/upper body */
+            .hero-photo { object-position: center 15%; }
+            .programs { padding:60px 32px; }
+            .programs-grid { grid-template-columns:1fr; }
+            /* Program card images: taller aspect on mobile for better subject framing */
+            .program-img { aspect-ratio: 4/3; }
+            .program-img img { object-position: center 30%; }
+            .editorial { grid-template-columns:1fr; }
+            .editorial-img { height:72vw; }
+            /* Editorial (leg raise): focus on centre of frame */
+            .editorial-img img { object-position: center 40%; }
+            .editorial-text { padding:56px 32px; }
+            .about { grid-template-columns:1fr; padding:60px 32px; gap:56px; }
+            .about-visual { position:static; }
+            .about-badge { display:none; }
+            /* About photo: show face and upper body */
+            .about-img { aspect-ratio: 4/5; object-position: center 20%; }
+            .beginner { padding:60px 32px; }
+            .beginner-inner { grid-template-columns:1fr; gap:56px; }
+            .app-section { grid-template-columns:1fr; padding:60px 32px; }
+            .app-phone { order:2; }
+            .app-content { order:1; }
+            .testimonials { padding: 60px 32px; }
+            .testi-grid { grid-template-columns: 1fr; }
+            .final-cta { padding:80px 32px; }
+            footer { padding:32px; flex-wrap:wrap; gap:20px; }
+            .footer-links { flex-wrap:wrap; gap:16px; }
+            .promises { grid-template-columns:1fr; }
+        }
+
+        @media (max-width:640px) {
+            .nav-link { display:none; }
+            .hero-stats { flex-wrap:wrap; gap:24px; }
+            .section-head { flex-direction:column; align-items:flex-start; gap:20px; }
+            .cta-actions { flex-direction:column; }
+            .price-block { flex-direction:column; gap:24px; align-items:flex-start; }
+        }
+    
+
+        .price-included {
+            font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400;
+            letter-spacing: .14em; text-transform: uppercase; color: var(--sage-text);
+        }
+
+        /* Marquee pause control — WCAG 2.2.2 requires a way to stop
+           motion that runs longer than five seconds. */
+        .marquee-band { position: relative; }
+        .marquee-inner { display: flex; overflow: hidden; flex: 1; min-width: 0; }
+        .marquee-pause {
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px; padding: 0;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--dark); color: var(--cream);
+            border: 1px solid rgba(246,243,237,.45); border-radius: 50%;
+            cursor: pointer; transition: background .2s ease, border-color .2s ease;
+        }
+        .marquee-pause:hover { background: #2A2A27; border-color: rgba(246,243,237,.8); }
+        .marquee-band.is-paused .marquee-track { animation-play-state: paused; }
+        .marquee-pause .icon-play { display: none; }
+        .marquee-band.is-paused .icon-pause { display: none; }
+        .marquee-band.is-paused .icon-play { display: block; }
+
+        /* Accents sitting on dark grounds. */
+        .sched-week, .feat-num, .beginner cite, .beginner blockquote cite { color: var(--rose-on-dark); }
+        /* ── ACCESSIBILITY, MOTION & TYPE CORRECTIONS ─────────── */
+
+        /* Cormorant defaults to oldstyle figures, which render 0 as an
+           O and 1 as an I. Every number that carries meaning gets
+           lining figures so prices read as prices. */
+        .price-amt, .price-block-amt, .pricing-figure, .stat-num, .hero-stat-num,
+        .feat-num, .flex-box-num, .pillar-num, .wyg-num, .step-num, .price-num,
+        .hero-badge-num, .pricing-perhead-num, .maths-num, .sched-week,
+        .hero-title, .section-title, .price, .pricing-amt {
+            font-variant-numeric: lining-nums tabular-nums;
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+
+        /* Visible, on-palette focus ring (was the browser default blue). */
+        a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+            outline: 2px solid var(--rose-text);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        /* Anchor targets were landing underneath the fixed nav. */
+        [id] { scroll-margin-top: 110px; }
+
+        .skip-link {
+            position: absolute; left: 16px; top: -120px; z-index: 400;
+            background: var(--dark); color: var(--cream);
+            padding: 12px 20px; font-size: 12px; font-weight: 400;
+            letter-spacing: .1em; text-transform: uppercase;
+            text-decoration: none; transition: top .2s ease;
+        }
+        .skip-link:focus { top: 16px; }
+
+        /* Touch targets: these were 18-23px against a 24px AA minimum. */
+        .footer-social {
+            display: inline-flex; align-items: center; justify-content: center;
+            min-width: 44px; min-height: 44px; margin-top: 0;
+        }
+        .btn-ghost { min-height: 44px; display: inline-flex; align-items: center; }
+        .footer-link { display: inline-block; padding: 6px 0; }
+        .nav-cta { min-height: 44px; display: inline-flex; align-items: center; }
+
+        /* The phone mockup overflowed the viewport at <=410px. */
+        .app-phone img { max-width: 100%; }
+
+        /* Long-form copy was running to ~95 characters per line. */
+        .about-body, .story-body, .ethos-body, .how-para, .beginner-desc,
+        .empathy-desc, .program-desc { max-width: 62ch; }
+        .about-body, .story-body, .ethos-body { line-height: 1.7; }
+
+        @media (max-width: 640px) {
+            /* index, start and back-pain were not stacking these. */
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .hero-actions > * { width: 100%; justify-content: center; text-align: center; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            /* Intentional alternative, not a blanket animation kill:
+               content still appears and still gives hover/focus feedback,
+               it just stops moving. */
+            html { scroll-behavior: auto; }
+            .marquee-track { animation: none; }
+            .marquee-band { overflow-x: auto; }
+            [data-reveal] { opacity: 1; transform: none; transition: none; }
+            .program-card:hover, .btn-dark:hover, .btn-ghost:hover,
+            .price-block:hover, .feature-box:hover, .testi:hover,
+            .pillar:hover, .promise:hover { transform: none; }
+        }
+    </style>
+    <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- ═══════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════ -->
+<nav id="nav">
+    <a href="index.html">
+        <img class="nav-logo" src="logo/mypilateslab-256.png" alt="My Pilates Lab" width="256" height="206" decoding="async">
+    </a>
+    <div class="nav-right">
+        <a href="#programs" class="nav-link">Programs</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="nav-cta">Start 7 Days Free</a>
+    </div>
+</nav>
+
+<main id="main">
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section class="hero">
+    <div class="hero-left">
+        <p class="hero-eyebrow" data-reveal>Level 4 Certified Pilates Instructor</p>
+        <h1 class="hero-title" data-reveal data-d="1">
+            Your<br>
+            <em>complete</em><br>
+            Pilates<br>
+            resource.
+        </h1>
+        <p class="hero-subtitle" data-reveal data-d="2">
+            Pilates for everyBODY — wherever you are, whatever your age or ability. Created and taught by Caroline Owen.
+        </p>
+        <div class="hero-actions" data-reveal data-d="3">
+            <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-dark">Start 7 Days Free</a>
+            <a href="#programs" class="btn-ghost">Explore Programs</a>
+        </div>
+        <div class="hero-stats" data-reveal data-d="4">
+            <div class="stat">
+                <span class="stat-num">13</span>
+                <span class="stat-lbl">Pre-recorded tutorials</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">4</span>
+                <span class="stat-lbl">Weeks to confident</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">L4</span>
+                <span class="stat-lbl">Certified instructor</span>
+            </div>
+        </div>
+    </div>
+    <div class="hero-right">
+        <img class="hero-photo" src="Images/opt/IMG_0913-1600.jpg" srcset="Images/opt/IMG_0913-400.jpg 400w, Images/opt/IMG_0913-800.jpg 800w, Images/opt/IMG_0913-1600.jpg 1600w" sizes="(max-width: 1100px) 100vw, 50vw" alt="Caroline Owen, Level 4 Pilates Instructor" width="1600" height="2400" decoding="async" fetchpriority="high">
+        <div class="hero-caption">
+            <p class="hero-caption-name">Caroline Owen</p>
+            <p class="hero-caption-title">Level 4 Certified<br>Pilates Instructor</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     MARQUEE
+════════════════════════════════════════════════ -->
+<div class="marquee-band">
+    <div class="marquee-inner" aria-hidden="true">
+    <div class="marquee-track">
+        <span class="marquee-item">Complete Beginner Series <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Workout Library <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Level 4 Pilates Specialist <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Pilates for everyBODY <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Start 7 Days Free <span class="marquee-sep"></span></span>
+        <span class="marquee-item">mypilateslab.co.uk <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Complete Beginner Series <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Workout Library <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Level 4 Pilates Specialist <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Pilates for everyBODY <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Start 7 Days Free <span class="marquee-sep"></span></span>
+        <span class="marquee-item">mypilateslab.co.uk <span class="marquee-sep"></span></span>
+    </div>
+</div>
+        <button type="button" class="marquee-pause" aria-pressed="false" aria-label="Pause the scrolling banner">
+            <svg class="icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+            <svg class="icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PROGRAMS
+════════════════════════════════════════════════ -->
+<section class="programs" id="programs">
+    <div class="section-head">
+        <div>
+            <p class="eyebrow" data-reveal>Programs</p>
+            <h2 class="section-title" data-reveal data-d="1">Two ways to<br><em>start moving</em></h2>
+        </div>
+        <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-ghost" data-reveal>View all →</a>
+    </div>
+    <div class="programs-grid">
+        <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="program-card" data-reveal>
+            <div class="program-img">
+                <img src="Images/opt/IMG_0869-1600.jpg" srcset="Images/opt/IMG_0869-400.jpg 400w, Images/opt/IMG_0869-800.jpg 800w, Images/opt/IMG_0869-1600.jpg 1600w" sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 660px" alt="Workout Library — online Pilates classes" width="1600" height="900" loading="lazy" decoding="async">
+            </div>
+            <div class="program-body">
+                <p class="program-type">Monthly Subscription</p>
+                <h3 class="program-name">Workout<br>Library</h3>
+                <p class="program-desc">A growing collection of Pilates workouts to drop into any time. New classes added regularly — work at your own pace, cancel any time.</p>
+                <div class="program-foot">
+                    <div class="price">
+                        <span class="price-sym">£</span>
+                        <span class="price-amt">15</span>
+                        <span class="price-note">/ month</span>
+                    </div>
+                    <span class="card-link">Start 7 Days Free</span>
+                </div>
+            </div>
+        </a>
+        <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="program-card" data-reveal data-d="1">
+            <div class="program-img">
+                <img src="Images/opt/IMG_0859-Edit-1600.jpg" srcset="Images/opt/IMG_0859-Edit-400.jpg 400w, Images/opt/IMG_0859-Edit-800.jpg 800w, Images/opt/IMG_0859-Edit-1600.jpg 1600w" sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 660px" alt="Complete Beginner Series — 4-week Pilates program" width="1600" height="935" loading="lazy" decoding="async">
+            </div>
+            <div class="program-body">
+                <p class="program-type">4-Week Program</p>
+                <h3 class="program-name">Complete<br>Beginner Series</h3>
+                <p class="program-desc">From curious to confident in just four weeks. 13 pre-recorded tutorials — no equipment needed, just you and your mat.</p>
+                <div class="program-foot">
+                    <div class="price"><span class="price-included">Included</span></div>
+                    <span class="card-link">Start 7 Days Free</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     EDITORIAL QUOTE
+════════════════════════════════════════════════ -->
+<section class="editorial">
+    <div class="editorial-img">
+        <img src="Images/opt/IMG_0924-1600.jpg" srcset="Images/opt/IMG_0924-400.jpg 400w, Images/opt/IMG_0924-800.jpg 800w, Images/opt/IMG_0924-1600.jpg 1600w" sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 660px" alt="Caroline Owen guiding a controlled mat Pilates movement" width="1600" height="2400" loading="lazy" decoding="async">
+    </div>
+    <div class="editorial-text">
+        <p class="editorial-ew" data-reveal>From the founder</p>
+        <blockquote class="editorial-quote" data-reveal data-d="1">
+            "If you make space in your day to move and nourish your body, you will find a vitality and articulation of movement that exists within you — which is a truly special and unique expression of yourself."
+        </blockquote>
+        <p class="editorial-attr" data-reveal data-d="2">
+            <strong>Caroline Owen</strong>
+            Founder · Level 4 Certified Pilates Instructor
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════ -->
+<section class="about" id="about">
+    <div class="about-visual" data-reveal>
+        <div class="about-img-wrap">
+            <img class="about-img" src="Images/opt/IMG_0899-1600.jpg" srcset="Images/opt/IMG_0899-400.jpg 400w, Images/opt/IMG_0899-800.jpg 800w, Images/opt/IMG_0899-1600.jpg 1600w" sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 660px" alt="Caroline Owen, Pilates Instructor" width="1600" height="2400" loading="lazy" decoding="async">
+            <div class="about-badge">
+                <p class="about-badge-text">BA (Hons) Dance · PGCE · Dog Lover · Kombucha Enthusiast</p>
+            </div>
+        </div>
+    </div>
+    <div class="about-content">
+        <p class="eyebrow" data-reveal>About your instructor</p>
+        <h2 class="about-name" data-reveal data-d="1">
+            Hello,<br><em>I'm Caroline.</em>
+        </h2>
+        <p class="about-tagline" data-reveal data-d="2">Pilates for everyBODY.</p>
+        <p class="about-body" data-reveal data-d="2">
+            As founder of My Pilates Lab, my main aim is to make Pilates <strong>accessible to everyBODY</strong>. I want you to fall in love with how your body feels and embed this wonderful form of movement into your lifestyle — whatever your age or ability.
+        </p>
+        <p class="about-body" data-reveal data-d="3">
+            Following two decades as a subject lead in GCSE and A Level Dance and Performing Arts, I've been a practising Level 4 Pilates instructor for five years — helping people alleviate aches and pains, keep daily niggles at bay, and keep doing what they love.
+        </p>
+        <p class="about-body" data-reveal data-d="3">
+            My Pilates Lab is not about me. You won't see insta stories full of selfies or endless curated self-promotion. But rest assured I'll beaver away behind the scenes to curate classes that keep you healthy and strong.
+        </p>
+        <div class="promises" data-reveal data-d="4">
+            <div class="promise">
+                <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+                Genuine Support
+            </div>
+            <div class="promise">
+                <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+                Goal Setting Sessions
+            </div>
+            <div class="promise">
+                <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+                Weekly Check-ins
+            </div>
+            <div class="promise">
+                <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+                Group Challenges
+            </div>
+            <div class="promise">
+                <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+                Fun!
+            </div>
+        </div>
+        <div class="about-cta" data-reveal data-d="5">
+            <a href="mailto:caroline@mypilateslab.co.uk" class="btn-dark">Send Caroline a Message</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     COMPLETE BEGINNER SERIES
+════════════════════════════════════════════════ -->
+<section class="beginner" id="beginner-series">
+    <div class="beginner-inner">
+        <div>
+            <p class="eyebrow" data-reveal>4-Week Program</p>
+            <h2 class="section-title" data-reveal data-d="1">Complete<br><em>Beginner Series</em></h2>
+            <blockquote class="joseph-quote" data-reveal data-d="2">
+                "In 10 sessions you'll feel the difference, in 20 you'll see the difference, and in 30 you'll have a new body."
+                <cite>— Joseph Pilates</cite>
+            </blockquote>
+            <p class="beginner-desc" data-reveal data-d="2">
+                Take yourself from curious to confident in four weeks. Each week is carefully curated so knowledge and skills progress steadily — leaving you with a greater understanding of the technique and a deeper mind-body connection.
+            </p>
+            <div class="features" data-reveal data-d="3">
+                <div class="feature">
+                    <span class="feat-num">13</span>
+                    <div>
+                        <p class="feat-title">Pre-recorded tutorials</p>
+                        <p class="feat-sub">Watch anywhere, anytime, as often as you like.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feat-num">30</span>
+                    <div>
+                        <p class="feat-title">Minutes per class</p>
+                        <p class="feat-sub">3 sessions a week — fits into any schedule.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feat-num">0</span>
+                    <div>
+                        <p class="feat-title">Equipment needed</p>
+                        <p class="feat-sub">Just a thick Pilates mat and you're ready.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="price-block" data-reveal data-d="4">
+                <div>
+                    <span class="price-block-label">Complete Beginner Series — included</span>
+                    <div class="price-block-amt">£15</div>
+                    <p class="price-block-sub">Per month · 7 days free · Cancel any time</p>
+                </div>
+                <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-cream">Start 7 Days Free</a>
+            </div>
+        </div>
+        <div>
+            <p class="sched-label" data-reveal>Programme Schedule</p>
+            <div class="schedule" data-reveal data-d="1">
+                <div class="sched-row">
+                    <span class="sched-week">Intro</span>
+                    <span class="sched-name">Mobility Drills</span>
+                    <span class="sched-count">Get started</span>
+                </div>
+                <div class="sched-row">
+                    <span class="sched-week">Week 1</span>
+                    <span class="sched-name">Foundations</span>
+                    <span class="sched-count">3 classes</span>
+                </div>
+                <div class="sched-row">
+                    <span class="sched-week">Week 2</span>
+                    <span class="sched-name">Building Skills</span>
+                    <span class="sched-count">3 classes</span>
+                </div>
+                <div class="sched-row">
+                    <span class="sched-week">Week 3</span>
+                    <span class="sched-name">Progressive Flow</span>
+                    <span class="sched-count">3 classes</span>
+                </div>
+                <div class="sched-row">
+                    <span class="sched-week">Week 4</span>
+                    <span class="sched-name">Confident Practice</span>
+                    <span class="sched-count">3 classes</span>
+                </div>
+            </div>
+            <p class="sched-note" data-reveal>Weekly structure is for guidance only — work at your own pace.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     APP SECTION
+════════════════════════════════════════════════ -->
+<section class="app-section">
+    <div class="app-phone" data-reveal>
+        <img src="Images/opt/MPL-Phone-800.png" srcset="Images/opt/MPL-Phone-400.png 400w, Images/opt/MPL-Phone-800.png 800w" sizes="(max-width: 640px) 78vw, 380px" alt="My Pilates Lab on mobile" width="800" height="1186" loading="lazy" decoding="async">
+    </div>
+    <div class="app-content">
+        <p class="eyebrow" data-reveal>Access anywhere</p>
+        <h2 class="section-title" data-reveal data-d="1">Your Pilates<br><em>in your pocket.</em></h2>
+        <p class="app-desc" data-reveal data-d="2">
+            My Pilates Lab is available as an app — stream your classes on any device, anywhere. Track your progress, revisit your favourite sessions, and build a practice that works for your life.
+        </p>
+        <div data-reveal data-d="3">
+            <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-dark">Access the App</a>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <div class="testi-head" data-reveal>
+        <p class="eyebrow">What students say</p>
+        <h2 class="section-title">Join hundreds who<br><em>feel the difference.</em></h2>
+    </div>
+    <div class="testi-grid">
+        <div class="testi-card" data-reveal>
+            <p class="testi-stars" aria-label="5 stars">★★★★★</p>
+            <blockquote class="testi-quote">"Highly recommend Caroline's classes whether in person or via her app. Each class is brilliantly delivered with support and encouragement. Been a regular for over four years."</blockquote>
+            <p class="testi-name">— Regular, 4+ years</p>
+        </div>
+        <div class="testi-card" data-reveal data-d="1">
+            <p class="testi-stars" aria-label="5 stars">★★★★★</p>
+            <blockquote class="testi-quote">"I can't believe the difference in my body and mind since starting Pilates. No session is ever the same and her knowledge is brilliant. I can't imagine my life without Pilates now thanks to Caroline."</blockquote>
+            <p class="testi-name">— 1:1 student</p>
+        </div>
+        <div class="testi-card" data-reveal data-d="2">
+            <p class="testi-stars" aria-label="5 stars">★★★★★</p>
+            <blockquote class="testi-quote">"Just completed the 4 week beginner's course with Caroline and I can't recommend her enough! Didn't want the sessions to end and I look forward to continuing my Pilates journey!"</blockquote>
+            <p class="testi-name">— Beginner course participant</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FINAL CTA
+════════════════════════════════════════════════ -->
+<section class="final-cta">
+    <p class="cta-eyebrow" data-reveal>Ready to begin?</p>
+    <h2 class="cta-title" data-reveal data-d="1">
+        Fall in love with<br><em>how your body feels.</em>
+    </h2>
+    <p class="cta-sub" data-reveal data-d="2">7 days free, then £15 a month. Cancel any time.</p>
+    <div class="cta-actions" data-reveal data-d="3">
+        <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-dark">Start 7 Days Free</a>
+        <a href="#programs" class="btn-ghost">Explore Programs</a>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+</main>
+<footer>
+    <a href="index.html">
+        <img class="footer-logo" src="logo/mypilateslab-256.png" alt="My Pilates Lab" width="256" height="206" loading="lazy" decoding="async">
+    </a>
+    <div class="footer-links">
+        <a href="start.html" class="footer-link">Beginners</a>
+        <a href="back-pain.html" class="footer-link">Back Pain</a>
+        <a href="busy.html" class="footer-link">Busy Lives</a>
+        <a href="teams.html" class="footer-link">For Teams</a>
+        <a href="caroline.html" class="footer-link">About Caroline</a>
+        <a href="free-trial.html" class="footer-link">Free Trial</a>
+    </div>
+    <p class="footer-copy">© 2026 My Pilates Lab · Caroline Owen · mypilateslab.co.uk</p>
+    <a href="https://www.instagram.com/my.pilates.lab" class="footer-social" target="_blank" rel="noopener" aria-label="Follow My Pilates Lab on Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+</footer>
+
+<script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(
+        entries => entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('in');
+                observer.unobserve(e.target);
+            }
+        }),
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+    // Instantly reveal hero
+    setTimeout(() => {
+        document.querySelectorAll('.hero [data-reveal]').forEach(el => el.classList.add('in'));
+    }, 80);
+
+    // Nav scroll shadow
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.style.boxShadow = scrollY > 10
+            ? '0 2px 24px rgba(28,28,26,.07)'
+            : 'none';
+    }, { passive: true });
+
+    document.querySelectorAll('.marquee-band').forEach(function (band) {
+        var btn = band.querySelector('.marquee-pause');
+        if (!btn) return;
+        function set(paused) {
+            band.classList.toggle('is-paused', paused);
+            btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+            btn.setAttribute('aria-label', paused ? 'Resume the scrolling banner' : 'Pause the scrolling banner');
+        }
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) set(true);
+        btn.addEventListener('click', function () { set(!band.classList.contains('is-paused')); });
+    });
+    </script>
+
+</body>
+</html>
