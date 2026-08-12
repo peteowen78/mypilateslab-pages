@@ -549,6 +549,24 @@
         .sources a { color:var(--sage-text); text-underline-offset:2px; }
     </style>
     <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1437259854752515');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1437259854752515&ev=PageView&noscript=1"
+    alt=""/></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -871,5 +889,32 @@ setTimeout(() => {
     });
     </script>
 
+
+    <!-- Meta Pixel - outbound CTA tracking -->
+    <script>
+    (function () {
+      var lastFired = 0;
+      document.addEventListener('click', function (e) {
+        if (typeof window.fbq !== 'function') return;
+        var t = e.target;
+        if (!t || typeof t.closest !== 'function') return;
+        var a = t.closest('a[href]');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        var isBooking = href.indexOf('mypilateslab.mvt.so') !== -1;
+        var isEmail = href.slice(0, 7).toLowerCase() === 'mailto:';
+        if (!isBooking && !isEmail) return;
+        var now = Date.now();
+        if (now - lastFired < 800) return;
+        lastFired = now;
+        window.fbq('track', 'Lead', {
+          content_name: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80),
+          content_category: isEmail ? 'email_enquiry' : 'booking_click',
+          source_page: (location.pathname.split('/').pop() || 'index.html')
+        });
+      }, true);
+    })();
+    </script>
+    <!-- End Meta Pixel - outbound CTA tracking -->
 </body>
 </html>

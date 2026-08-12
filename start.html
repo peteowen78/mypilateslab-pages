@@ -536,6 +536,24 @@
         .nav-link { min-height: 44px; display: inline-flex; align-items: center; }
     </style>
     <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1437259854752515');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1437259854752515&ev=PageView&noscript=1"
+    alt=""/></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -548,7 +566,7 @@
     <div class="nav-right">
         <a href="index.html" class="nav-link">Home</a>
         <a href="caroline.html" class="nav-link">About</a>
-        <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="nav-cta">Start 7 Days Free</a>
+        <a href="https://mypilateslab.mvt.so/programs/complete-beginner-course" class="nav-cta">Start 7 Days Free</a>
     </div>
 </nav>
 
@@ -568,7 +586,7 @@
             The Complete Beginner Series takes you from curious to confident in four weeks. No experience needed — just a mat and a small slice of your day.
         </p>
         <div class="hero-actions" data-reveal data-d="3">
-            <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-dark">Start 7 Days Free</a>
+            <a href="https://mypilateslab.mvt.so/programs/complete-beginner-course" class="btn-dark">Start 7 Days Free</a>
             <a href="#whats-inside" class="btn-ghost">View the program</a>
         </div>
         <div class="hero-stats" data-reveal data-d="4">
@@ -701,7 +719,7 @@
                     <div class="price-block-amt">£15</div>
                     <p class="price-block-sub">Per month · 7 days free · Cancel any time</p>
                 </div>
-                <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-cream">Start 7 Days Free</a>
+                <a href="https://mypilateslab.mvt.so/programs/complete-beginner-course" class="btn-cream">Start 7 Days Free</a>
             </div>
         </div>
         <div>
@@ -802,7 +820,7 @@
     </h2>
     <p class="cta-sub" data-reveal data-d="2">7 days free, then £15 a month. Cancel any time.</p>
     <div class="cta-actions" data-reveal data-d="3">
-        <a href="https://mypilateslab.mvt.so/programs/workoutlibrary" class="btn-dark">Start 7 Days Free</a>
+        <a href="https://mypilateslab.mvt.so/programs/complete-beginner-course" class="btn-dark">Start 7 Days Free</a>
         <a href="#whats-inside" class="btn-ghost">View the program</a>
     </div>
 </section>
@@ -862,5 +880,32 @@
     });
     </script>
 
+
+    <!-- Meta Pixel - outbound CTA tracking -->
+    <script>
+    (function () {
+      var lastFired = 0;
+      document.addEventListener('click', function (e) {
+        if (typeof window.fbq !== 'function') return;
+        var t = e.target;
+        if (!t || typeof t.closest !== 'function') return;
+        var a = t.closest('a[href]');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        var isBooking = href.indexOf('mypilateslab.mvt.so') !== -1;
+        var isEmail = href.slice(0, 7).toLowerCase() === 'mailto:';
+        if (!isBooking && !isEmail) return;
+        var now = Date.now();
+        if (now - lastFired < 800) return;
+        lastFired = now;
+        window.fbq('track', 'Lead', {
+          content_name: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80),
+          content_category: isEmail ? 'email_enquiry' : 'booking_click',
+          source_page: (location.pathname.split('/').pop() || 'index.html')
+        });
+      }, true);
+    })();
+    </script>
+    <!-- End Meta Pixel - outbound CTA tracking -->
 </body>
 </html>
